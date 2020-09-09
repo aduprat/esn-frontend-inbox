@@ -23,7 +23,7 @@ module.exports = function(config) {
     colors: true,
     singleRun,
     autoWatch: true,
-    browsers: ['FirefoxHeadless'],
+    browsers: ['Chrome', 'FirefoxHeadless'],
 
     customLaunchers: {
       FirefoxHeadless: {
@@ -46,6 +46,7 @@ module.exports = function(config) {
     webpack: webpackConfig,
     plugins: [
       'karma-firefox-launcher',
+      'karma-chrome-launcher',
       'karma-mocha',
       'karma-webpack',
       'karma-spec-reporter',

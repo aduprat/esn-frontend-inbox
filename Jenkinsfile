@@ -2,7 +2,7 @@ pipeline {
 
   agent { 
     dockerfile {
-      filename 'Dockerfile'
+      filename "Dockerfile"
       dir 'test'
     }
   }
@@ -15,8 +15,22 @@ pipeline {
     }
 
     stage('Run tests') {
-      steps {
-        sh 'npm run test'
+      matrix {
+        axes {
+          axis { 
+            name 'BROWSER' 
+            values 'Firefox', 'Chrome'
+          }
+        }
+
+        stages {
+          stage('Run tests with') {
+
+            steps {
+              sh "npm run test --browser ${BROWSER}"
+            }
+          }
+        }
       }
     }
 
